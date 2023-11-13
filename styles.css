@@ -38,7 +38,7 @@ a:visted{
     text-decoration: none;
 }
 a:hover{
-    text-decoration: none;
+    text-decoration: underline;
 }
 a:active{
     text-decoration: none;
@@ -54,4 +54,17 @@ footer{
     bottom:0;
     position: fixed;
     color: #ffffff;
+}
+.content p{
+    font-size: 20px;
+}
+.content img{
+    padding: 5px;
+    margin-left: 20px;
+    margin-top: 5px;
+    border: #000000 2px dashed;
+    border-radius: 100px;
+}
+.content form{
+    width: max-content;
 }
