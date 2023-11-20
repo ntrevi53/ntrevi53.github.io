@@ -29,3 +29,78 @@
         </footer>
     </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .checkout-form {
+            display: grid;
+            grid-gap: 10px;
+        }
+        #orderSummary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Checkout</h2>
+        <form id="checkoutForm" class="checkout-form">
+            <div>
+                <input type="checkbox" id="bottledBeverages" name="items[]" value="Bottled Beverages">
+                <label for="bottledBeverages">Bottled Beverages</label>
+            </div>
+            <div>
+                <input type="checkbox" id="cappuccino" name="items[]" value="Cappuccino">
+                <label for="cappuccino">Cappuccino</label>
+            </div>
+            <div>
+                <input type="checkbox" id="icedCoffee" name="items[]" value="Iced Coffee">
+                <label for="icedCoffee">Iced Coffee</label>
+            </div>
+            <div>
+                <input type="checkbox" id="milkshakes" name="items[]" value="Milkshakes">
+                <label for="milkshakes">Milkshakes</label>
+            </div>
+            <button type="button" onclick="processOrder()">Complete Purchase</button>
+        </form>
+
+        <div id="orderSummary"></div>
+    </div>
+
+    <script>
+        function processOrder() {
+            // Retrieve selected items
+            const selectedItems = [];
+            const checkboxes = document.querySelectorAll('input[name="items[]"]:checked');
+            checkboxes.forEach((checkbox) => {
+                selectedItems.push(checkbox.value);
+            });
+
+            // Display selected items
+            const orderSummaryDiv = document.getElementById('orderSummary');
+            if (selectedItems.length > 0) {
+                orderSummaryDiv.innerHTML = '<h3>Order Summary:</h3><p>' + selectedItems.join(', ') + '</p>';
+            } else {
+                orderSummaryDiv.innerHTML = '<p>No items selected.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
