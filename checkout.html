@@ -162,6 +162,96 @@
                     orderSummaryDiv.innerHTML = '<p>No items selected.</p>';
                 }
             }
-        </script>
-    </body>
-    </html>
+</script>
+</body>
+</html>
+<div id="paymentDetails" class="hidden">
+    <h3>Payment Details</h3>
+    <label for="cardNumber">Card Number:</label>
+    <input type="text" id="cardNumber" name="cardNumber" placeholder="**** **** **** ****" required>
+
+    <label for="expiryDate">Expiry Date:</label>
+    <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+
+    <label for="cvv">CVV:</label>
+    <input type="text" id="cvv" name="cvv" placeholder="***" required>
+
+    <div id="paymentErrors" style="color: red;"></div>
+</div>
+
+<button type="submit">Okay</button>
+
+<div id="processingMessage" class="hidden">
+    <p>Your order is being processed.</p>
+    <p>Order Number: <span id="orderNumber"></span></p>
+</div>
+</form>
+
+<div id="orderSummary"></div>
+</div>
+
+<script>
+function processOrder() {
+// Retrieve selected items and their prices
+const selectedItems = [];
+const checkboxes = document.querySelectorAll('input[name="items[]"]:checked');
+checkboxes.forEach((checkbox) => {
+    const itemName = checkbox.value;
+    const itemPrice = parseFloat(checkbox.getAttribute('data-price'));
+    selectedItems.push({ name: itemName, price: itemPrice });
+});
+
+// Calculate total price
+const totalPrice = selectedItems.reduce((total, item) => total + item.price, 0);
+
+// Display selected items and total price
+const orderSummaryDiv = document.getElementById('orderSummary');
+const paymentDetailsDiv = document.getElementById('paymentDetails');
+const paymentErrorsDiv = document.getElementById('paymentErrors');
+const processingMessageDiv = document.getElementById('processingMessage');
+const orderNumberSpan = document.getElementById('orderNumber');
+
+if (selectedItems.length > 0) {
+    const itemsList = selectedItems.map(item => `${item.name} - $${item.price.toFixed(2)}`).join('<br>');
+    orderSummaryDiv.innerHTML = `<h3>Order Summary:</h3><p>${itemsList}</p><p>Total: $${totalPrice.toFixed(2)}</p>`;
+    paymentDetailsDiv.classList.remove('hidden');
+
+    // Validate payment details
+    const cardNumber = document.getElementById('cardNumber').value.trim();
+    const expiryDate = document.getElementById('expiryDate').value.trim();
+    const cvv = document.getElementById('cvv').value.trim();
+
+    if (cardNumber === '' || expiryDate === '' || cvv === '') {
+        paymentErrorsDiv.innerHTML = 'Please fill out all payment details.';
+        return false;
+    } else {
+        paymentErrorsDiv.innerHTML = '';
+
+        // Generate a random order number
+        const orderNumber = generateOrderNumber();
+        orderNumberSpan.textContent = orderNumber;
+
+        // Show processing message and hide payment details
+        processingMessageDiv.classList.remove('hidden');
+        paymentDetailsDiv.classList.add('hidden');
+
+        // Clear form
+        document.getElementById('checkoutForm').reset();
+
+        // Prevent default form submission
+        return false;
+    }
+} else {
+    orderSummaryDiv.innerHTML = '<p>No items selected.</p>';
+    return false;
+}
+}
+
+function generateOrderNumber() {
+// Generate a random order number (you may implement a more sophisticated logic)
+return Math.floor(Math.random() * 1000000) + 1;
+}
+</script>
+</body>
+</html>
+
