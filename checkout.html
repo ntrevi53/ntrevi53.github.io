@@ -28,79 +28,150 @@
            Copyright &copy; Naylea Trevino, Andrea Pensado
         </footer>
     </body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .checkout-form {
-            display: grid;
-            grid-gap: 10px;
-        }
-        #orderSummary {
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Checkout</h2>
-        <form id="checkoutForm" class="checkout-form">
-            <div>
-                <input type="checkbox" id="bottledBeverages" name="items[]" value="Bottled Beverages">
-                <label for="bottledBeverages">Bottled Beverages</label>
-            </div>
-            <div>
-                <input type="checkbox" id="cappuccino" name="items[]" value="Cappuccino">
-                <label for="cappuccino">Cappuccino</label>
-            </div>
-            <div>
-                <input type="checkbox" id="icedCoffee" name="items[]" value="Iced Coffee">
-                <label for="icedCoffee">Iced Coffee</label>
-            </div>
-            <div>
-                <input type="checkbox" id="milkshakes" name="items[]" value="Milkshakes">
-                <label for="milkshakes">Milkshakes</label>
-            </div>
-            <button type="button" onclick="processOrder()">Complete Purchase</button>
-        </form>
-
-        <div id="orderSummary"></div>
-    </div>
-
-    <script>
-        function processOrder() {
-            // Retrieve selected items
-            const selectedItems = [];
-            const checkboxes = document.querySelectorAll('input[name="items[]"]:checked');
-            checkboxes.forEach((checkbox) => {
-                selectedItems.push(checkbox.value);
-            });
-
-            // Display selected items
-            const orderSummaryDiv = document.getElementById('orderSummary');
-            if (selectedItems.length > 0) {
-                orderSummaryDiv.innerHTML = '<h3>Order Summary:</h3><p>' + selectedItems.join(', ') + '</p>';
-            } else {
-                orderSummaryDiv.innerHTML = '<p>No items selected.</p>';
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Checkout Page</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
             }
-        }
-    </script>
-</body>
-</html>
+            .container {
+                max-width: 800px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .checkout-form {
+                display: grid;
+                grid-gap: 10px;
+            }
+            #orderSummary {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Checkout</h2>
+            <form id="checkoutForm" class="checkout-form">
+                <div>
+                    <h3>Drinks</h3>
+                    <div>
+                        <input type="checkbox" id="bottledBeverages" name="items[]" value="Bottled Beverages">
+                        <label for="bottledBeverages">Bottled Beverages</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="milkshake" name="items[]" value="Milkshake">
+                        <label for="milkshake">Milkshake</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="lemonade" name="items[]" value="Lemonade">
+                        <label for="lemonade">Lemonade</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="frappe" name="items[]" value="Frappe">
+                        <label for="frappe">Frappe</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="americano" name="items[]" value="Americano">
+                        <label for="americano">Americano</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="icedCoffee" name="items[]" value="Iced Coffee">
+                        <label for="icedCoffee">Iced Coffee</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="boba" name="items[]" value="Boba">
+                        <label for="boba">Boba</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="cappucino" name="items[]" value="Cappucino">
+                        <label for="cappucino">Cappucino</label>
+                    </div>
+                </div>
+    
+                <div>
+                    <h3>Pastries</h3>
+                    <div>
+                        <input type="checkbox" id="funfettiCakeBars" name="items[]" value="Funfetti Cake Bars">
+                        <label for="funfettiCakeBars">Funfetti Cake Bars</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="chocolateChipCookies" name="items[]" value="Chocolate Chip Cookies">
+                        <label for="chocolateChipCookies">Chocolate Chip Cookies</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="keyLimePie" name="items[]" value="Key Lime Pie">
+                        <label for="keyLimePie">Key Lime Pie</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="oatmealCreamPie" name="items[]" value="Oatmeal Cream Pie">
+                        <label for="oatmealCreamPie">Oatmeal Cream Pie</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="fudgeBrownies" name="items[]" value="Fudge Brownies">
+                        <label for="fudgeBrownies">Fudge Brownies</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="cinnamonRolls" name="items[]" value="Cinnamon Rolls">
+                        <label for="cinnamonRolls">Cinnamon Rolls</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="concha" name="items[]" value="Concha">
+                        <label for="concha">Concha</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="cheesecake" name="items[]" value="Cheesecake">
+                        <label for="cheesecake">Cheesecake</label>
+                    </div>
+                </div>
+    
+                <div>
+                    <h3>Merchandise</h3>
+                    <div>
+                        <input type="checkbox" id="whiteCeramicMug" name="items[]" value="11 oz. White Ceramic Mug">
+                        <label for="whiteCeramicMug">11 oz. White Ceramic Mug</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="almondCeramicMug" name="items[]" value="11 oz. Almond Ceramic Mug">
+                        <label for="almondCeramicMug">11 oz. Almond Ceramic Mug</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="twoToneWhiteMug" name="items[]" value="14 oz. Ceramic Two Tone White Mug">
+                        <label for="twoToneWhiteMug">14 oz. Ceramic Two Tone White Mug</label>
+                    </div>
+                </div>
+    
+                <button type="button" onclick="processOrder()">Complete Purchase</button>
+            </form>
+    
+            <div id="orderSummary"></div>
+        </div>
+    
+        <script>
+            function processOrder() {
+                // Retrieve selected items
+                const selectedItems = [];
+                const checkboxes = document.querySelectorAll('input[name="items[]"]:checked');
+                checkboxes.forEach((checkbox) => {
+                    selectedItems.push(checkbox.value);
+                });
+    
+                // Display selected items
+                const orderSummaryDiv = document.getElementById('orderSummary');
+                if (selectedItems.length > 0) {
+                    orderSummaryDiv.innerHTML = '<h3>Order Summary:</h3><p>' + selectedItems.join(', ') + '</p>';
+                } else {
+                    orderSummaryDiv.innerHTML = '<p>No items selected.</p>';
+                }
+            }
+        </script>
+    </body>
+    </html>
